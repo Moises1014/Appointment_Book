@@ -16,12 +16,13 @@ import javax.swing.JOptionPane;
  * @author moises
  */
 public class addview extends javax.swing.JFrame {
-
+    java.sql.Date date;
     /**
      * Creates new form addview
      */
-    public addview() {
+    public addview(java.sql.Date date1) {
         initComponents();
+        this.date = date1;
     }
 
     /**
@@ -124,12 +125,12 @@ public class addview extends javax.swing.JFrame {
             String sql ="INSERT INTO APP.APPOINTMENTBOOK (\"DATE\", APPOINTMENT, TYPE_OF_APPOINTMENT) VALUES (?, ?, ?)";
 
             PreparedStatement pst = conn.prepareStatement(sql);
-            Statement stm = conn.createStatement();
+            //Statement stm = conn.createStatement();
             
            
-            java.util.Date utilStartDate = jXDatePicker1.getDate();
-            java.sql.Date sqlDate = new java.sql.Date(utilStartDate.getTime());
-            pst.setDate(1, sqlDate);
+           // java.util.Date utilStartDate = jXDatePicker1.getDate();
+            //java.sql.Date sqlDate = new java.sql.Date(utilStartDate.getTime());
+            pst.setDate(1, date);
             pst.setString(2, Appointment.getText());
             String type = Type_of_Appointment.getSelectedItem().toString();
             pst.setString(3, type);
@@ -139,7 +140,7 @@ public class addview extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "addition Complete");
             conn.close();
             this.setVisible(false);
-            new view().setVisible(true);
+            new Dateview(date).setVisible(true);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -149,7 +150,7 @@ public class addview extends javax.swing.JFrame {
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new view().setVisible(true);
+        new Dateview(date).setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
 
     
@@ -180,7 +181,7 @@ public class addview extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addview().setVisible(true);
+                new addview(date).setVisible(true);
             }
         });
     }

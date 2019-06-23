@@ -24,13 +24,13 @@ public class Appointment_Book {
         try {
             // TODO code application logic here
             Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/appointmentbook");
-            view view = new view();
-            view.setVisible(true);
+            //view view = new view();
+            //view.setVisible(true);
+            Calenderview cview = new Calenderview();
+            cview.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Appointment_Book.class.getName()).log(Level.SEVERE, null, ex);
         }
-        view view = new view();
-        view.setVisible(true);
     }
 
 }
